@@ -1,27 +1,7 @@
-import type { OpenNextConfig } from "@opennextjs/aws/types/open-next.js";
+// default open-next.config.ts file created by @opennextjs/cloudflare
+import { defineCloudflareConfig } from "@opennextjs/cloudflare/config";
+import r2IncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/r2-incremental-cache";
 
-export default {
-  default: {
-    override: {
-      wrapper: "express-dev",
-      converter: "node",
-      incrementalCache: "fs-dev",
-      queue: "direct",
-      tagCache: "fs-dev",
-    },
-  },
-
-  imageOptimization: {
-    override: {
-      wrapper: "dummy",
-      converter: "dummy",
-    },
-    loader: "fs-dev",
-  },
-  dangerous: {
-    enableCacheInterception: true
-  }
-
-  // You can override the build command here so that you don't have to rebuild next every time you make a change
-  //buildCommand: "echo 'No build command'",
-} satisfies OpenNextConfig;
+export default defineCloudflareConfig({
+	incrementalCache: r2IncrementalCache,
+});
